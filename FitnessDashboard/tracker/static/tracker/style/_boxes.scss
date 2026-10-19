@@ -1,0 +1,83 @@
+@use 'vars' as *;
+
+.box-container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+
+.box-container * {
+  flex-wrap: wrap;
+}
+
+
+.box-shadow {
+  background-color: $light;
+  padding: 2rem;
+  -webkit-box-shadow: 0 0 33px 0 $shadow;
+  -moz-box-shadow: 0 0 33px 0 $shadow;
+  box-shadow: 0 0 33px 0 $shadow;
+  height: fit-content;
+}
+
+
+.box-25 {
+  width: calc(25% - 1.5rem);
+}
+
+.box-33 {
+  width: calc(33% - 1.1rem);
+}
+
+.box-40 {
+  width: calc(40% - 2rem);
+}
+
+.box-50 {
+  width: calc(50% - 1rem);
+}
+
+.box-60 {
+  width: calc(60% - 2rem);
+}
+
+.box-70 {
+  width: calc(70% - 2rem);
+}
+
+.box-100 {
+  width: 100%;
+}
+
+@media (max-width: $break-point-xl) {
+
+  .box-25,
+  .box-33 {
+    width: calc(50% - 2rem);
+  }
+
+}
+
+@media (max-width: $break-point-xl) {
+
+  .box-50,
+  .box-40,
+  .box-60,
+  .box-70 {
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: $break-point-s) {
+
+  .box-25,
+  .box-33 {
+    width: 100%;
+  }
+
+}

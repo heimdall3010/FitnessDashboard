@@ -1,0 +1,242 @@
+{% extends "tracker/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="data-page export-page">
+
+    <div class="box-100 box-shadow data-page-box">
+        <img
+            class="data-page-box-icon"
+            src="{% static 'tracker/svg/blender.svg' %}"
+            alt="Export Icon"
+            aria-hidden="true"
+        >
+
+        <div class="data-page-header-box">
+            <h1 class="data-page-box-headline">Export</h1>
+
+            <span class="data-page-box-subheadline">
+                Download your fitness data as PDF reports
+            </span>
+        </div>
+    </div>
+
+    <div class="box-container">
+
+        <div class="box-50 box-shadow info-box">
+            <div class="info-box-inner">
+
+                <div class="info-box-header">
+                    <div class="info-box-header-icon">
+                        <img
+                            class="info-box-icon"
+                            src="{% static 'tracker/svg/sport-bag.svg' %}"
+                            alt="Fitness Dashboard | Dashboard Icon"
+                            aria-hidden="true"
+                        >
+                    </div>
+
+                    <div class="info-box-header-headlines">
+                        <h2 class="info-box-icon-headline">
+                            Export | Dashboard
+                        </h2>
+
+                        <span class="info-box-icon-subheadline">
+                            Training statistics and measurement comparison
+                        </span>
+                    </div>
+                </div>
+
+                <a
+                    href="{% url 'tracker:export_dashboard_pdf' %}"
+                    download="dashboard_report.pdf"
+                    class="btn btn-prim btn-export"
+                >
+                    Export Dashboard
+                </a>
+
+            </div>
+        </div>
+
+        <div class="box-50 box-shadow info-box">
+            <div class="info-box-inner">
+
+                <div class="info-box-header">
+                    <div class="info-box-header-icon">
+                        <img
+                            class="info-box-icon"
+                            src="{% static 'tracker/svg/measuring-tape.svg' %}"
+                            alt="Fitness Dashboard | Measuring Tape Icon"
+                            aria-hidden="true"
+                        >
+                    </div>
+
+                    <div class="info-box-header-headlines">
+                        <h2 class="info-box-icon-headline">
+                            Export | Body Measurements
+                        </h2>
+
+                        <span class="info-box-icon-subheadline">
+                            Weight, waist, arms and chest diagrams
+                        </span>
+                    </div>
+                </div>
+
+                <a
+                    href="{% url 'tracker:export_body_measurements_pdf' %}"
+                    download="body_measurements_report.pdf"
+                    class="btn btn-prim btn-export"
+                >
+                    Export Body Measures
+                </a>
+
+            </div>
+        </div>
+
+        <div class="box-50 box-shadow info-box">
+            <div class="info-box-inner">
+
+                <div class="info-box-header">
+                    <div class="info-box-header-icon">
+                        <img
+                            class="info-box-icon"
+                            src="{% static 'tracker/svg/dumbbell.svg' %}"
+                            alt="Fitness Dashboard | Dumbbell Icon"
+                            aria-hidden="true"
+                        >
+                    </div>
+
+                    <div class="info-box-header-headlines">
+                        <h2 class="info-box-icon-headline">
+                            Export | Training Plan
+                        </h2>
+
+                        <span class="info-box-icon-subheadline">
+                            Planned exercises and training structure
+                        </span>
+                    </div>
+                </div>
+
+                <a
+                    href="{% url 'tracker:export_training_plan_pdf' %}"
+                    download="training_plan_report.pdf"
+                    class="btn btn-prim btn-export"
+                >
+                    Export Training Plan
+                </a>
+
+            </div>
+        </div>
+
+        <div class="box-50 box-shadow info-box">
+            <div class="info-box-inner">
+
+                <div class="info-box-header">
+                    <div class="info-box-header-icon">
+                        <img
+                            class="info-box-icon"
+                            src="{% static 'tracker/svg/mat.svg' %}"
+                            alt="Fitness Dashboard | Training History Icon"
+                            aria-hidden="true"
+                        >
+                    </div>
+
+                    <div class="info-box-header-headlines">
+                        <h2 class="info-box-icon-headline">
+                            Export | Training History
+                        </h2>
+
+                        <span class="info-box-icon-subheadline">
+                            Completed sessions, exercises, distance and kcal
+                        </span>
+                    </div>
+                </div>
+
+                <a
+                    href="{% url 'tracker:export_training_history_pdf' %}"
+                    download="training_history_report.pdf"
+                    class="btn btn-prim btn-export"
+                >
+                    Export Training History
+                </a>
+
+            </div>
+        </div>
+
+        <div class="box-50 box-shadow info-box">
+            <div class="info-box-inner">
+
+                <div class="info-box-header">
+                    <div class="info-box-header-icon">
+                        <img
+                            class="info-box-icon"
+                            src="{% static 'tracker/svg/salad.svg' %}"
+                            alt="Fitness Dashboard | Salad Icon"
+                            aria-hidden="true"
+                        >
+                    </div>
+
+                    <div class="info-box-header-headlines">
+                        <h2 class="info-box-icon-headline">
+                            Export | Meal Plan
+                        </h2>
+
+                        <span class="info-box-icon-subheadline">
+                            Meals, categories and ingredients
+                        </span>
+                    </div>
+                </div>
+
+                <a
+                    href="{% url 'tracker:export_meal_plan_pdf' %}"
+                    download="meal_plan_report.pdf"
+                    class="btn btn-prim btn-export"
+                >
+                    Export Meal Plan
+                </a>
+
+            </div>
+        </div>
+
+        <div class="box-50 box-shadow info-box">
+            <div class="info-box-inner">
+
+                <div class="info-box-header">
+                    <div class="info-box-header-icon">
+                        <img
+                            class="info-box-icon"
+                            src="{% static 'tracker/svg/blender.svg' %}"
+                            alt="Fitness Dashboard | Complete Report Icon"
+                            aria-hidden="true"
+                        >
+                    </div>
+
+                    <div class="info-box-header-headlines">
+                        <h2 class="info-box-icon-headline">
+                            Export | All
+                        </h2>
+
+                        <span class="info-box-icon-subheadline">
+                            Complete fitness report in one PDF
+                        </span>
+                    </div>
+                </div>
+
+                <a
+                    href="{% url 'tracker:export_all_pdf' %}"
+                    download="fitness_report.pdf"
+                    class="btn btn-sec btn-export"
+                >
+                    Export All
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

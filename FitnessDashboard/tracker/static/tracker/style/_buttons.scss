@@ -1,0 +1,264 @@
+@use 'vars' as *;
+
+#buttons {
+  margin: 5rem auto;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+
+  &-left {
+    justify-content: flex-end;
+  }
+
+  &-center {
+    justify-content: center;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+    }
+  }
+}
+
+
+.btn {
+  display: flex;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.8rem;
+  width: max-content;
+  transition: 0.5s;
+  margin: 0;
+  height: fit-content;
+
+}
+
+.btn-group {
+  display: flex;
+  padding: 10px 0;
+  border-radius: 25px;
+  cursor: pointer;
+  margin: 1rem;
+  width: max-content;
+  font-size: 0;
+
+  .btn {
+    border-radius: 0;
+  }
+
+  .btn:not(:last-child),
+  .btn:not(:last-child):hover {
+    border-right-width: 0;
+  }
+
+  .btn:last-child {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
+
+  .btn:first-child {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+  }
+
+  @media (max-width: $break-point-m) {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1.5rem;
+
+    .btn {
+      border-radius: 25px;
+      border-width: 2px;
+    }
+
+    .btn:not(:last-child),
+    .btn:not(:last-child):hover {
+      border-right-width: 2px;
+    }
+  }
+}
+
+.btn-prim,
+.btn-prim-outline,
+.btn-sec,
+.btn-sec-outline,
+.btn-terz,
+.btn-terz-outline,
+.btn-quart,
+.btn-quart-outline {
+  border: 2px solid;
+  transition: 0.5s;
+}
+
+.btn-prim {
+  background-color: $prim;
+  border-color: $prim;
+  color: $light;
+
+  a {
+    color: $light;
+  }
+}
+
+.btn-prim-outline {
+  background-color: $light;
+  border-color: $prim;
+  color: $prim;
+
+  a {
+    color: $prim;
+  }
+}
+
+.btn-sec {
+  background-color: $sec;
+  border-color: $sec;
+  color: $light;
+
+  a {
+    color: $light;
+  }
+}
+
+.btn-sec-outline {
+  background-color: $light;
+  border-color: $sec;
+  color: $sec;
+
+  a {
+    color: $sec;
+  }
+}
+
+.btn-terz {
+  background-color: $terz;
+  border-color: $terz;
+  color: $dark;
+
+  a {
+    color: $dark;
+  }
+}
+
+.btn-terz-outline {
+  background-color: $dark;
+  border-color: $terz;
+  color: $terz;
+
+  a {
+    color: $terz;
+  }
+}
+
+.btn-quart {
+  background-color: $quart;
+  border-color: $quart;
+  color: $dark;
+
+  a {
+    color: $dark;
+  }
+}
+
+.btn-quart-outline {
+  background-color: $dark;
+  border-color: $quart;
+  color: $quart;
+
+  a {
+    color: $quart;
+  }
+}
+
+@media (min-width: 1000px) {
+  .btn-prim:hover {
+    background-color: $light;
+    color: $prim;
+
+    a {
+      color: $prim;
+    }
+  }
+
+  .btn-prim-outline:hover {
+    background-color: $prim;
+    color: $light;
+
+    a {
+      color: $light;
+    }
+  }
+
+  .btn-sec:hover {
+    background-color: $light;
+    color: $sec;
+
+    a {
+      color: $sec;
+    }
+  }
+
+  .btn-sec-outline:hover {
+    background-color: $sec;
+    color: $light;
+
+    a {
+      color: $light;
+    }
+  }
+
+  .btn-terz:hover {
+    background-color: $dark;
+    color: $terz;
+
+    a {
+      color: $terz;
+    }
+  }
+
+  .btn-terz-outline:hover {
+    background-color: $terz;
+    color: $dark;
+
+    a {
+      color: $dark;
+    }
+  }
+
+  .btn-quart:hover {
+    background-color: $dark;
+    color: $quart;
+
+    a {
+      color: $quart;
+    }
+  }
+
+  .btn-quart-outline:hover {
+    background-color: $quart;
+    color: $dark;
+
+    a {
+      color: $dark;
+    }
+  }
+}
+
+.btn-disabled,
+.btn-disabled:hover {
+  pointer-events: none;
+  background-color: $light;
+  border: 2px solid $dark;
+  color: $dark;
+
+  a {
+    color: $dark;
+  }
+
+  opacity: 0.33;
+}

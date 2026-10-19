@@ -1,0 +1,80 @@
+@use 'vars' as *;
+
+
+.data-page-box {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    box-shadow: none;
+    margin: 1rem 0 5rem 0;
+    position: relative;
+    gap: 0 2rem;
+
+    .data-page-header-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        &::after {
+            content: '';
+            position: absolute;
+            height: 1px;
+            width: 50%;
+            left: 0;
+            bottom: -1rem;
+            border-bottom: 1px solid $gray;
+        }
+
+    }
+
+
+
+
+    .data-page-box-icon {
+        width: 6rem;
+        height: 6rem;
+        margin: -2rem 0 0 0;
+    }
+
+    .data-page-box-subheadline {
+        margin: 0;
+    }
+
+    .data-page-box-subheadline {
+        font-size: 2rem;
+        font-family: $font-headline;
+        margin: 0;
+    }
+
+}
+
+
+.dashboard-page {
+
+    .dashboard-plot {
+        display: block;
+        width: 100%;
+        height: 50rem;
+        object-fit: contain;
+        margin: 6rem auto 0 auto;
+    }
+
+    .box-50 {
+        .dashboard-plot {
+            max-height: 26rem;
+        }
+    }
+}
+
+
+
+
+
+.export-page {
+
+    .btn-export.is-loading {
+        cursor: wait;
+        opacity: 0.65;
+    }
+}

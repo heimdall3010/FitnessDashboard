@@ -1,0 +1,36 @@
+{% extends "tracker/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="data-page credits-page">
+
+  <div class="box-100 box-shadow data-page-box">
+    <img class="data-page-box-icon" src="{% static 'tracker/svg/runner.svg' %}" alt="Fitness Dashboard | Runner Icon"
+      aria-hidden="true">
+    <div class="data-page-header-box">
+      <h1 class="data-page-box-headline">Credits</h1>
+      <span class="data-page-box-subheadline">work in progress</span>
+    </div>
+  </div>
+
+  <p>
+    This Django application is presented as a demonstration project and serves to illustrate the current
+    technical implementation, feature set, and design direction of the Fitness Dashboard. Please note that
+    the application is under continuous development, and further functionality, usability enhancements, and
+    design improvements are planned for future releases.
+  </p>
+
+  <ul>
+    <li>idea & concept by: Deniz Inan</li>
+    <li>designed & programmed by: Deniz Inan</li>
+    <li>e-mail: deniz.inan@di-dev.de</li>
+    <li>icons: https://www.svgrepo.com/</li>
+    <li>hamburger icon: https://jonsuh.com/hamburgers/</li>
+  </ul>
+
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,103 @@
+@use 'vars' as *;
+
+
+
+.nav-component {
+  padding: 4rem 0;
+  height: 100vh;
+  background-color: $sec;
+  position: fixed;
+  width: 20rem;
+  z-index: 9999;
+
+  @media (max-width: $break-point-l) {
+    position: fixed;
+    width: 25rem;
+    right: -30rem;
+    left: auto;
+    height: 100%;
+    overflow-y: scroll;
+    transition: right .5s;
+  }
+
+
+  .nav-divider {
+    padding: 4rem;
+
+    .nav-divider-inner {
+      width: 100%;
+      border: 1px solid rgba($light, 0.33);
+    }
+  }
+
+  .nav-icon {
+    width: 9.25rem;
+    height: 9.25rem;
+    margin: 1rem auto 0 auto;
+    border-radius: 50%;
+    border: 1px solid $prim;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: $break-point-l) {
+      width: 10rem;
+      height: 10rem;
+      margin-bottom: 0.9rem;
+    }
+  }
+
+  #nav-navbar {
+    display: flex;
+    width: 100%;
+  }
+
+  ul {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+  }
+
+  .nav-navbar-item {
+
+    padding: 0;
+    transition: background-color .5s;
+
+    a {
+      padding: 2rem 0 2rem 4rem;
+      display: block;
+      color: $light;
+      transition: color .5s;
+    }
+
+    &:hover {
+      background-color: $light;
+
+      a {
+        color: $sec;
+      }
+    }
+  }
+
+  .nav-navbar-item-active {
+    background-color: $light;
+
+    a {
+      color: $sec;
+    }
+
+  }
+}
+
+.nav-component-active {
+  @media (max-width: $break-point-l) {
+    right: 0;
+  }
+}

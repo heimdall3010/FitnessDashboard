@@ -1,0 +1,60 @@
+@use 'vars' as *;
+
+table,
+th,
+td {
+  border: 1px solid rgba($gray, 0.44);
+  border-collapse: collapse;
+}
+
+table {
+  font-size: 1.6rem;
+  padding: 2rem 0;
+  margin: 5rem auto;
+  width: 100%;
+
+  @media (max-width: $break-point-xl) {
+    font-size: 1.2rem;
+    padding: 1rem 0;
+  }
+
+
+  th {
+    text-align: left;
+    color: $light;
+    background-color: $prim;
+    font-family: $font-bold;
+  }
+
+  td,
+  th {
+    padding: 2rem;
+
+    @media (max-width: $break-point-xl) {
+      padding: 1rem;
+    }
+  }
+
+}
+
+.table-col-icon {
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: $font-bold;
+
+
+  .table-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1.5rem;
+
+    @media (max-width: $break-point-xl) {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+    }
+  }
+
+}

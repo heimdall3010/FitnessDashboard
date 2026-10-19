@@ -1,0 +1,187 @@
+{% extends "tracker/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div class="data-page training-history-page">
+
+        <div class="box-100 box-shadow data-page-box">
+            <img class="data-page-box-icon" src="{% static 'tracker/svg/mat.svg' %}"
+                 alt="Fitness Dashboard | Gym Mat Icon"
+                 aria-hidden="true">
+
+            <div class="data-page-header-box">
+                <h1 class="data-page-box-headline">Training History</h1>
+                <span class="data-page-box-subheadline">It's not what you do - it's how you do it!</span>
+            </div>
+        </div>
+
+        <div class="component accordion-component">
+
+            {% if training_history %}
+
+                {% for month, training_history_entries in training_history.items %}
+
+                    <div class="accordion">
+
+                        <div class="accordion-headline {% if forloop.counter0 == 0 %}accordion-active{% endif %}">
+                            <h3>{{ month }}</h3>
+
+                            <div class="accordion-icon">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                            d="m22.535 16.88-5.656 5.66a.962.962 0 0 1-.879.25.962.962 0 0 1-.879-.25l-5.656-5.66a1.006 1.006 0 0 1 0-1.42 1 1 0 0 1 1.414 0L15 19.59V9a1.001 1.001 0 0 1 2 0v10.59l4.121-4.13a1 1 0 0 1 1.414 0c.391.4.391 1.03 0 1.42ZM16 0C7.163 0 0 7.16 0 16s7.163 16 16 16 16-7.16 16-16S24.837 0 16 0Z"
+                                            fill="#000" fill-rule="evenodd"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="accordion-content {% if forloop.counter0 == 0 %}accordion-active{% endif %}">
+                            <div class="box-container">
+
+                                {% for training_history_entry in training_history_entries %}
+
+                                    <div class="box-100 box-shadow info-box">
+
+                                        <div class="info-box-inner">
+
+                                            <div class="info-box-header">
+
+                                                <div class="info-box-header-icon">
+                                                    {% if training_history_entry.training_type == "Strength" %}
+                                                        <img class="info-box-icon"
+                                                             src="{% static 'tracker/svg/dumbbell-gym.svg' %}"
+                                                             alt="Fitness Dashboard | Strength Training Icon"
+                                                             aria-hidden="true">
+
+                                                    {% elif training_history_entry.training_type == "Cardio" %}
+                                                        <img class="info-box-icon"
+                                                             src="{% static 'tracker/svg/stationary-bike.svg' %}"
+                                                             alt="Fitness Dashboard | Cardio Training Icon"
+                                                             aria-hidden="true">
+
+                                                    {% elif training_history_entry.training_type == "Yoga & Stretching" %}
+                                                        <img class="info-box-icon"
+                                                             src="{% static 'tracker/svg/pilates-yoga.svg' %}"
+                                                             alt="Fitness Dashboard | Yoga and Stretching Icon"
+                                                             aria-hidden="true">
+
+                                                    {% else %}
+                                                        <img class="info-box-icon"
+                                                             src="{% static 'tracker/svg/dumbbell-gym.svg' %}"
+                                                             alt="Fitness Dashboard | Training Icon" aria-hidden="true">
+                                                    {% endif %}
+                                                </div>
+
+
+                                                <div class="info-box-header-headlines">
+                                                    <h2 class="info-box-icon-headline">
+                                                        {{ training_history_entry.training_type }}
+                                                        | {{ training_history_entry.training_program }}
+                                                    </h2>
+
+                                                    <span class="info-box-icon-subheadline">
+                                        {{ training_history_entry.date|date:"d.m.Y" }}
+                                    </span>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        {% if training_history_entry.exercises %}
+
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    {% if training_history_entry.training_type == "Strength" %}
+                                                        <th>Exercise</th>
+                                                        <th>Sets x Reps</th>
+                                                        <th>Weight kg</th>
+                                                        <th>Equip.</th>
+                                                        <th>Durat.</th>
+                                                    {% endif %}
+
+                                                    {% if training_history_entry.training_type == "Cardio" %}
+                                                        <th>Exercise</th>
+                                                        <th>Equip.</th>
+                                                        <th>Durat.</th>
+                                                        <th>Dist.</th>
+                                                        <th>Kcal</th>
+                                                    {% endif %}
+
+                                                    {% if training_history_entry.training_type == "Yoga & Stretching" %}
+                                                        <th>Exercise</th>
+                                                        <th>Equip.</th>
+                                                        <th>Durat.</th>
+                                                    {% endif %}
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                {% for exercise in training_history_entry.exercises %}
+                                                    <tr>
+                                                        {% if training_history_entry.training_type == "Strength" %}
+                                                            <td>{{ exercise.name }}</td>
+                                                            <td>{{ exercise.sets_reps|default:"-" }}</td>
+                                                            <td>{{ exercise.weight|default:"-" }}</td>
+                                                            <td>{{ exercise.equipment|default:"-" }}</td>
+                                                            <td>{{ exercise.duration|default:"-" }}</td>
+                                                        {% endif %}
+
+                                                        {% if training_history_entry.training_type == "Cardio" %}
+                                                            <td>{{ exercise.name }}</td>
+                                                            <td>{{ exercise.equipment|default:"-" }}</td>
+                                                            <td>{{ exercise.duration|default:"-" }}</td>
+                                                            <td>{{ exercise.distance|default:"-" }}</td>
+                                                            <td>{{ exercise.kcal|default:"-" }}</td>
+                                                        {% endif %}
+
+                                                        {% if training_history_entry.training_type == "Yoga & Stretching" %}
+                                                            <td>{{ exercise.name }}</td>
+                                                            <td>{{ exercise.equipment|default:"-" }}</td>
+                                                            <td>{{ exercise.duration|default:"-" }}</td>
+                                                        {% endif %}
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+
+                                            {% if training_history_entry.training_note %}
+                                                <p><strong>NOTE:</strong></p>
+                                                <p>{{ training_history_entry.training_note|linebreaks }}</p>
+                                            {% endif %}
+
+                                        {% else %}
+
+                                            <p>No exercises added to this training history entry yet.</p>
+
+                                        {% endif %}
+
+                                    </div>
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="box-container">
+                    <div class="box-100 box-shadow info-box">
+                        <p>No training history available yet.</p>
+                    </div>
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+{% endblock %}

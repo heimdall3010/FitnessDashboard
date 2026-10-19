@@ -1,0 +1,366 @@
+{% extends "tracker/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="data-page dashboard-page">
+
+    <div class="box-100 box-shadow data-page-box">
+        <img class="data-page-box-icon" src="{% static 'tracker/svg/check-list.svg' %}"
+            alt="Fitness Dashboard | Check List Icon" aria-hidden="true">
+
+        <div class="data-page-header-box">
+
+            {% if current_salute and user_data and user_data.first_name %}
+            <h1 class="data-page-box-headline">
+                {{ current_salute }}, {{ user_data.first_name }}
+            </h1>
+
+            {% elif current_salute and user_data and user_data.username %}
+            <h1 class="data-page-box-headline">
+                {{ current_salute }}, {{ user_data.username }}
+            </h1>
+
+            {% elif current_salute %}
+            <h1 class="data-page-box-headline">
+                {{ current_salute }}
+            </h1>
+
+            {% else %}
+            <h1 class="data-page-box-headline">
+                Dashboard
+            </h1>
+            {% endif %}
+
+
+            {% if current_date %}
+            <span class="data-page-box-subheadline">
+                Today | {{ current_date }}
+            </span>
+            {% else %}
+            <span class="data-page-box-subheadline">
+                The All-in-One Overview
+            </span>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <div class="box-container">
+
+        <div class="box-100 box-shadow info-box">
+
+            <div class="info-box-header">
+                <div class="info-box-header-icon">
+                    <img src="{% static 'tracker/svg/chronometer-timer.svg' %}"
+                        alt="Fitness Dashboard | Chronometer Icon" aria-hidden="true">
+                </div>
+
+                <div class="info-box-header-headlines">
+                    <h2 class="info-box-icon-headline">Nutrition & Exercises</h2>
+                    <span class="info-box-icon-subheadline"></span>
+                </div>
+            </div>
+
+            <div class="info-box-inner">
+
+                <div class="box-50">
+
+                    {% if current_nutrition.nutrition_rows %}
+
+                    <div class="info-box-inner">
+
+                        <div class="box-100 box-shadow info-box">
+                            <h4>Latest Entry | {{ current_nutrition.latest_nutrition.date }}</h4>
+                        </div>
+
+                        {% for row in current_nutrition.nutrition_rows %}
+
+                        <div class="box-50 box-shadow info-box">
+
+                            <div class="info-box-header">
+                                <div class="info-box-header-icon-small">
+                                    <img src="{% static row.icon %}" alt="Fitness Dashboard | {{ row.label }} Icon">
+                                </div>
+
+                                <div class="info-box-header-headlines">
+                                    <h3 class="info-box-icon-headline">{{ row.label }}</h3>
+                                    <span class="info-box-icon-subheadline"></span>
+                                </div>
+                            </div>
+
+                            <div class="info-text">
+
+                                <div class="info-bar-box">
+
+                                    {% if row.value is not None %}
+                                    <div class="info-bar">
+                                        <div class="info-bar-inner"
+                                            style="width: calc({{ row.value }} * 100% / {{ row.aim }});">
+                                        </div>
+
+                                        <p>{{ row.value }} {{ row.unit }}</p>
+                                    </div>
+
+                                    <div class="info-bar-text">
+                                        <p>0 {{ row.unit }}</p>
+                                        <p>{{ row.aim }} {{ row.unit }}</p>
+                                    </div>
+                                    {% else %}
+                                    <p>No data for today</p>
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                        {% else %}
+                        <p>No nutrition data available yet.</p>
+
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="box-50 box-shadow info-box">
+
+                    <div class="info-box-header">
+                        <div class="info-box-header-icon">
+                            <img src="{% static 'tracker/svg/stationary-bike.svg' %}"
+                                alt="Fitness Dashboard | Stationary Bike Icon" aria-hidden="true">
+                        </div>
+
+                        <div class="info-box-header-headlines">
+                            <h3 class="info-box-icon-headline">Exercises Subdivision</h3>
+                        </div>
+                    </div>
+
+                    {% if exercise_types_as_donut_chart %}
+                    <img class="dashboard-plot" src="data:image/png;base64,{{ exercise_types_as_donut_chart.image }}"
+                        alt="{{ exercise_types_as_donut_chart.alt }}">
+
+                    <p>
+                        Total recorded training sessions:
+                        <strong>{{ exercise_types_as_donut_chart.total_training_sessions }}</strong>
+                    </p>
+                    {% else %}
+                    <p>No training type data available yet.</p>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="box-50 box-shadow info-box">
+
+            <div class="info-box-header">
+                <div class="info-box-header-icon">
+                    <img src="{% static 'tracker/svg/dumbbell-gym.svg' %}" alt="Fitness Dashboard | Dumbbell Icon"
+                        aria-hidden="true">
+                </div>
+
+                <div class="info-box-header-headlines">
+                    <h2 class="info-box-icon-headline">Next Training Session</h2>
+                    <span class="info-box-icon-subheadline">coming up next</span>
+                </div>
+            </div>
+
+            <p>No upcoming training session available yet.</p>
+
+        </div>
+
+        <div class="box-50 box-shadow info-box">
+
+            <div class="info-box-header">
+                <div class="info-box-header-icon">
+                    <img src="{% static 'tracker/svg/salad.svg' %}" alt="Fitness Dashboard | Salad Icon"
+                        aria-hidden="true">
+                </div>
+
+                <div class="info-box-header-headlines">
+                    <h2 class="info-box-icon-headline">Today's Meal Plan</h2>
+                    <span class="info-box-icon-subheadline">enjoy the menu</span>
+                </div>
+            </div>
+
+            <p>No meal plan selected for today yet.</p>
+
+        </div>
+
+        {% if body_measure_improvement %}
+
+        <div class="box-100 info-box">
+
+            <div class="info-box-inner">
+
+                {% for row in body_measure_improvement.measure_rows %}
+
+                {% if row.label != 'Arm left' %}
+
+                <div class="box-25 box-shadow info-box">
+
+                    <div class="info-box-header">
+
+                        <div class="info-box-header-icon-small">
+                            <img {% if row.flip_icon %}style="transform: scaleX(-1);" {% endif %}
+                                src="{% static row.icon %}" alt="Fitness Dashboard | {{ row.label }} Icon">
+                        </div>
+
+                        <div class="info-box-header-headlines">
+                            {% if row.label == 'Arm right' %}
+                            <h3 class="info-box-icon-headline">Arms</h3>
+                            {% else %}
+                            <h3 class="info-box-icon-headline">{{ row.label }}</h3>
+                            {% endif %}
+
+                            <span class="info-box-icon-subheadline"></span>
+                        </div>
+
+                        <div class="info-compare-box {{ row.success_class }}">
+                            {% if row.difference is not None %}
+                            {% if row.difference > 0 %}
+                            +{{ row.difference }}
+                            {% else %}
+                            {{ row.difference }}
+                            {% endif %}
+                            {% else %}
+                            —
+                            {% endif %}
+                        </div>
+
+                    </div>
+
+                    <div class="info-text">
+
+                        <div class="info-text-box">
+                            {% if row.first_value is not None %}
+                            <p>{{ row.first_value }} {{ row.unit }}</p>
+                            <small>{{ row.first_date }}</small>
+                            {% else %}
+                            <p>—</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="info-text-box {{ row.success_class }}">
+                            {% if row.latest_value is not None %}
+                            <p>{{ row.latest_value }} {{ row.unit }}</p>
+                            <small>{{ row.latest_date }}</small>
+                            {% else %}
+                            <p>—</p>
+                            {% endif %}
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="box-100 box-shadow info-box">
+            <p>No body measurement data available yet.</p>
+        </div>
+
+        {% endif %}
+
+        <div class="box-50 box-shadow info-box">
+
+            <div class="info-box-header">
+                <div class="info-box-header-icon">
+                    <img src="{% static 'tracker/svg/sport-bag.svg' %}" alt="Fitness Dashboard | Sport Bag Icon"
+                        aria-hidden="true">
+                </div>
+
+                <div class="info-box-header-headlines">
+                    <h2 class="info-box-icon-headline">Days Trained</h2>
+                    <span class="info-box-icon-subheadline">since recording data</span>
+                </div>
+            </div>
+
+            {% if days_trained %}
+            <img class="dashboard-plot" src="data:image/png;base64,{{ days_trained.image }}"
+                alt="Fitness Dashboard | {{ days_trained.alt }}">
+            {% else %}
+            <p>No training data available yet.</p>
+            {% endif %}
+
+        </div>
+
+        <div class="box-50 box-shadow info-box">
+
+            <div class="info-box-header">
+                <div class="info-box-header-icon">
+                    <img src="{% static 'tracker/svg/muscle.svg' %}" alt="Fitness Dashboard | Muscle Icon"
+                        aria-hidden="true">
+                </div>
+
+                <div class="info-box-header-headlines">
+                    <h2 class="info-box-icon-headline">Training Days per Week</h2>
+                    <span class="info-box-icon-subheadline">average training days</span>
+                </div>
+            </div>
+
+            {% if average_training_days_per_week %}
+            <img class="dashboard-plot" src="data:image/png;base64,{{ average_training_days_per_week.image }}"
+                alt="Fitness Dashboard | {{ average_training_days_per_week.alt }}">
+            {% else %}
+            <p>No training data available yet.</p>
+            {% endif %}
+
+        </div>
+
+
+
+        <div class="box-100 box-shadow info-box">
+
+            <div class="info-box-header">
+                <div class="info-box-header-icon">
+                    <img src="{% static 'tracker/svg/video.svg' %}"
+                        alt="Fitness Dashboard | Video Icon" aria-hidden="true">
+                </div>
+
+                <div class="info-box-header-headlines">
+                    <h2 class="info-box-icon-headline">Subscriptions</h2>
+                    <span class="info-box-icon-subheadline"></span>
+                </div>
+            </div>
+
+            {% if youtube_channels %}
+                <div class="info-box-inner">
+                    {% for channel_data in youtube_channels %}
+                        <div class="box-50">
+                            <iframe
+                                class="youtube-iframe"
+                                src="https://www.youtube.com/embed/videoseries?list=UULF{{ channel_data.youtube_channel_id }}"
+                                title="Latest YouTube video by {{ channel_data.youtube_channel_name }}"
+                                loading="lazy"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allow=""
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No YouTube subscriptions available yet.</p>
+            {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
