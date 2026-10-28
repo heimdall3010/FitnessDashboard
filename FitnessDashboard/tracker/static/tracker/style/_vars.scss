@@ -1,0 +1,32 @@
+$prim: rgb(6, 154, 142);
+$sec: rgb(0, 85, 85);
+$terz: #f4dba0;
+$quart: rgb(251, 248, 204);
+
+
+$dark: rgb(51, 51, 51);
+$gray: rgb(226, 226, 226);
+$light: rgb(255, 255, 255);
+
+$shadow: rgba(51, 51, 51, 0.22);
+$shadow-active: rgba(51, 51, 51, 0.77);
+$font-color: #333;
+
+$success: $prim;
+$fail: darkred;
+
+$font-headline: "RobotoLight";
+$font-text: "RobotoRegular";
+$font-bold: "RobotoBold";
+
+$wrapper: 2400px;
+$wrapper-large: 1920px;
+$wrapper-medium: 1400px;
+$wrapper-slim: 1200px;
+
+$break-point-xxl: 1400px;
+$break-point-xl: 1279px;
+$break-point-l: 978px;
+$break-point-m: 768px;
+$break-point-s: 480px;
+$break-point-xs: 360px;

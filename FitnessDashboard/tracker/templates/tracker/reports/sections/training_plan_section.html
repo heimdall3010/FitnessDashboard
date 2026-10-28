@@ -1,0 +1,75 @@
+{% load static %}
+
+<style>
+    @page {
+        size: A4 landscape;
+        margin: 1cm;
+    }
+</style>
+
+<section class="training-plan-report training-plan-page report-wrapper">
+
+    {% if training_planner %}
+
+        {% for month, training_plans in training_planner.items %}
+
+            {% for training_plan in training_plans %}
+
+
+                <div class="report-wrapper-inner-isolate">
+
+                    <h2>
+                        <strong>
+                            {{ training_plan.training_type }} | {{ training_plan.training_program }}
+                            | {{ training_plan.date|date:"d.m.Y" }}
+                        </strong>
+                    </h2>
+
+                    <div class="report-table">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Exercise</th>
+                                <th>Sets x Reps</th>
+                                <th>Weight kg</th>
+                                <th>Durat.</th>
+                                <th>Equip.</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for exercise in training_plan.exercises %}
+                                <tr>
+                                    <td>{{ exercise.name }}</td>
+                                    <td>{{ exercise.sets_reps|default:"-" }}</td>
+                                    <td>{{ exercise.weight|default:"-" }} kg</td>
+                                    <td>{{ exercise.duration|default:"-" }}</td>
+                                    <td>{{ exercise.equipment|default:"-" }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="6">No exercises available.</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                        {% if training_plan.training_note %}
+                            <p><strong>NOTE:</strong></p>
+                            <p>{{ training_plan.training_note|linebreaks }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+
+            {% endfor %}
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No training plans available.</p>
+
+    {% endif %}
+
+</section>

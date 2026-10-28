@@ -1,0 +1,76 @@
+{% load static %}
+
+<style>
+    @page {
+        size: A4 landscape;
+        margin: 1cm;
+    }
+</style>
+
+<section class="meal-report meal-page report-wrapper">
+
+    {% if meals %}
+
+    {% for category, meal_list in meals.items %}
+
+    {% if meal_list %}
+
+    {% for meal in meal_list %}
+
+    <div class="report-wrapper-inner">
+
+        <h2>
+            <strong>
+                {{ category|title }} | {{ meal.name }}
+            </strong>
+        </h2>
+
+        <div class="report-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ingredient</th>
+                        <th>Amount</th>
+                        <th>Unit</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for ingredient in meal.ingredients %}
+                    <tr>
+                        <td>{{ ingredient.name }}</td>
+
+                        <td>
+                            {% if ingredient.amount %}
+                            {{ ingredient.amount }}
+                            {% else %}
+                            -
+                            {% endif %}
+                        </td>
+
+                        <td>{{ ingredient.unit|default:"-" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">No ingredients available.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+    {% endif %}
+
+    {% endfor %}
+
+    {% else %}
+
+    <p>No meals available.</p>
+
+    {% endif %}
+
+</section>
