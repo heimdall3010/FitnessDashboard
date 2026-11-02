@@ -1,0 +1,105 @@
+{% load static %}
+
+<style>
+    @page {
+        size: A4 landscape;
+        margin: 1cm;
+    }
+</style>
+
+<section class="training-history-report training-history-page report-wrapper">
+
+    {% if training_history %}
+
+        {% for month, training_days in training_history.items %}
+
+            {% for training_day in training_days %}
+
+                <div class="report-wrapper-inner">
+
+                    <h2>
+                        <strong>
+                            {{ training_day.training_type }} | {{ training_day.training_program }}
+                            | {{ training_day.date|date:"d.m.Y" }}
+                        </strong>
+                    </h2>
+
+                    <div class="report-table">
+                        <table>
+                            <thead>
+                            <tr>
+                                {% if training_day.training_type == "Strength" %}
+                                    <th>Exercise</th>
+                                    <th>Sets x Reps</th>
+                                    <th>Weight kg</th>
+                                    <th>Equip.</th>
+                                    <th>Durat.</th>
+                                {% endif %}
+
+                                {% if training_day.training_type == "Cardio" %}
+                                    <th>Exercise</th>
+                                    <th>Equip.</th>
+                                    <th>Durat.</th>
+                                    <th>Dist.</th>
+                                    <th>Kcal</th>
+                                {% endif %}
+
+                                {% if training_day.training_type == "Yoga & Stretching" %}
+                                    <th>Exercise</th>
+                                    <th>Equip.</th>
+                                    <th>Durat.</th>
+                                {% endif %}
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for exercise in training_day.exercises %}
+                                <tr>
+                                    {% if training_day.training_type == "Strength" %}
+                                        <td>{{ exercise.name }}</td>
+                                        <td>{{ exercise.sets_reps|default:"-" }}</td>
+                                        <td>{{ exercise.weight|default:"-" }} kg</td>
+                                        <td>{{ exercise.duration|default:"-" }}</td>
+                                    {% endif %}
+
+                                    {% if training_day.training_type == "Cardio" %}
+                                        <td>{{ exercise.name }}</td>
+                                        <td>{{ exercise.duration|default:"-" }}</td>
+                                        <td>{{ exercise.distance|default:"-" }}</td>
+                                        <td>{{ exercise.kcal|default:"-" }} kcal</td>
+                                        <td>{{ exercise.equipment|default:"-" }}</td>
+                                    {% endif %}
+
+                                    {% if training_day.training_type == "Yoga & Stretching" %}
+                                        <td>{{ exercise.name }}</td>
+                                        <td>{{ exercise.duration|default:"-" }}</td>
+                                        <td>{{ exercise.equipment|default:"-" }}</td>
+                                    {% endif %}
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="8">No exercises available.</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                        {% if training_day.training_note %}
+                            <p><strong>NOTE:</strong></p>
+                            <p>{{ training_day.training_note|linebreaks }}</p>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No training history available.</p>
+
+    {% endif %}
+
+</section>

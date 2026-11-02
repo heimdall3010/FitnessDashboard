@@ -1,0 +1,95 @@
+@use 'vars' as *;
+
+.accordion-component {
+
+  .accordion-headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $light!important ;
+    padding: 2rem;
+    -webkit-box-shadow: 0 0 33px 0 $shadow;
+    -moz-box-shadow: 0 0 33px 0 $shadow;
+    box-shadow: 0 0 33px 0 $shadow;
+    transition: .5s;
+
+    h3 {
+      font-size: 2.5rem;
+      color: $sec!important ;
+      margin: 0;
+      padding: 0;
+      transition: .5s;
+    }
+  }
+
+  .accordion-icon {
+    width: 35px;
+    height: 35px;
+    transition: .5s;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    path {
+      fill: $sec!important ;
+      transition: .5s;
+    }
+  }
+
+
+
+
+  .accordion-headline:hover {
+    cursor: pointer;
+    background-color: $sec!important ;
+    transition: .5s;
+  }
+
+  .accordion-headline:hover {
+    h3 {
+      color: $light!important ;
+    }
+
+    .accordion-icon path {
+      fill: $light!important ;
+    }
+  }
+
+
+  .accordion-content {
+    padding: 0;
+    margin: 1rem 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: .5s;
+  }
+
+
+  .accordion-active {
+
+    &.accordion-headline {
+      background-color: $sec !important;
+
+      h3 {
+        color: $light !important;
+      }
+    }
+
+    .accordion-icon {
+      transform: rotate(180deg);
+    }
+
+    path {
+      fill: $light!important ;
+    }
+
+    &.accordion-content {
+      max-height: 1000rem;
+      padding: 0;
+    }
+
+  }
+
+}

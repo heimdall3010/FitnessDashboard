@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fitness Dashboard</title>
+    <link rel="stylesheet" href="{% static 'tracker/style/style.min.css' %}">
+    <link rel="stylesheet" href="{% static 'tracker/style/report.min.css' %}">
+    <script type="module" src="{% static 'tracker/scripts/scripts.min.js' %}"></script>
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+    </div>
+
+</body>
+
+</html>

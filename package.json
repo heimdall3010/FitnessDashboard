@@ -1,0 +1,33 @@
+{
+  "name": "django_FitnessDashboard",
+  "version": "1.0.0",
+  "description": "A Django-based fitness dashboard for tracking body measurements, training history, training plans, meals, and PDF reports. The project is designed as a local personal dashboard with a clean web interface and export functionality for structured fitness documentation.",
+  "main": "index.js",
+  "private": true,
+  "author": "Deniz Inan",
+  "scripts": {
+    "sass:build": "npm run sass:expanded && npm run sass:minified",
+    "sass:expanded": "sass FitnessDashboard/tracker/static/tracker/style/style.scss:FitnessDashboard/tracker/static/tracker/style/style.css FitnessDashboard/tracker/static/tracker/style/report.scss:FitnessDashboard/tracker/static/tracker/style/report.css --style=expanded --no-source-map",
+    "sass:minified": "sass FitnessDashboard/tracker/static/tracker/style/style.scss:FitnessDashboard/tracker/static/tracker/style/style.min.css FitnessDashboard/tracker/static/tracker/style/report.scss:FitnessDashboard/tracker/static/tracker/style/report.min.css --style=compressed --no-source-map",
+    "sass:watch": "npm-run-all --parallel sass:watch:expanded sass:watch:minified",
+    "sass:watch:expanded": "sass --watch FitnessDashboard/tracker/static/tracker/style/style.scss:FitnessDashboard/tracker/static/tracker/style/style.css FitnessDashboard/tracker/static/tracker/style/report.scss:FitnessDashboard/tracker/static/tracker/style/report.css --style=expanded --no-source-map",
+    "sass:watch:minified": "sass --watch FitnessDashboard/tracker/static/tracker/style/style.scss:FitnessDashboard/tracker/static/tracker/style/style.min.css FitnessDashboard/tracker/static/tracker/style/report.scss:FitnessDashboard/tracker/static/tracker/style/report.min.css --style=compressed --no-source-map"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heimdall3010/django_FitnessDashboard.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/heimdall3010/django_FitnessDashboard/issues"
+  },
+  "homepage": "https://github.com/heimdall3010/django_FitnessDashboard#readme",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.101.0"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true
+  }
+}

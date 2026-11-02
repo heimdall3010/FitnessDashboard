@@ -1,0 +1,10 @@
+.venv/
+.idea/
+__pycache__/
+node_modules/
+
+# Environment configuration
+.env
+.env.*
+!.env.example
+!.env.docker.example

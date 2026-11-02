@@ -1,0 +1,123 @@
+{% extends "tracker/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="data-page body-measures-page">
+
+    <div class="box-100 box-shadow data-page-box">
+        <img class="data-page-box-icon" src="{% static 'tracker/svg/measuring-tape.svg' %}"
+            alt="Fitness Dashboard | Measuring Tape Icon" aria-hidden="true">
+        <div class="data-page-header-box">
+            <h1 class="data-page-box-headline">Body Measures</h1>
+            <span class="data-page-box-subheadline">Don't aim for goals - develop habits</span>
+        </div>
+    </div>
+
+    <div class="box-container">
+
+        {% for plot in plots %}
+        <div class="box-50 box-shadow info-box">
+
+            <div class="info-box-header">
+                <div class="info-box-header-icon">
+                    <img class="info-box-icon" src="{% static 'tracker/svg/'|add:plot.icon|add:'.svg' %}"
+                        alt="Fitness Dashboard | {{ plot.title }} Icon" aria-hidden="true">
+                </div>
+                <div class="info-box-header-headlines">
+                    <h2 class="info-box-icon-headline">{{ plot.title }}</h2>
+                    <span class="info-box-icon-subheadline">{{ plot.subtitle }}</span>
+                </div>
+            </div>
+
+            {% if plot.image %}
+            <img class="info-box-plot" src="data:image/png;base64,{{ plot.image }}"
+                alt="Fitness Dashboard | {{ plot.alt }}">
+            {% else %}
+            <p>No "{{ plot.title }}" data available.</p>
+            {% endif %}
+
+        </div>
+        {% endfor %}
+
+
+
+
+        <div class="box-100 box-shadow info-box">
+
+            <div class="info-box-header">
+                <div class="info-box-header-icon">
+                    <img class="info-box-icon" src="{% static 'tracker/svg/weight-scale.svg' %}"
+                        alt="Fitness Dashboard | {{ plot.title }} Icon" aria-hidden="true">
+                </div>
+                <div class="info-box-header-headlines">
+                    <h2 class="info-box-icon-headline">Weight and Measurement</h2>
+                    <span class="info-box-icon-subheadline">progress, facts and figures</span>
+                </div>
+            </div>
+
+
+            {% if body_measure_improvement %}
+            <table>
+                <tr>
+                    <th>Measure</th>
+                    <th>First Date</th>
+                    <th>First Measure</th>
+                    <th>Latest Date</th>
+                    <th>Latest Measure</th>
+                    <th>Diff.</th>
+                </tr>
+
+                {% for row in body_measure_improvement.measure_rows %}
+                <tr>
+                    <td class="table-col-icon">
+                        <img class="table-icon" {% if row.flip_icon %}style="transform: scaleX(-1);" {% endif %}
+                            src="{% static row.icon %}" alt="Fitness Dashboard | {{ row.label }} Icon">
+                        {{ row.label }}
+                    </td>
+
+                    <td>{{ row.first_date }}</td>
+
+                    <td>
+                        {% if row.first_value is not None %}
+                        {{ row.first_value }} {{ row.unit }}
+                        {% else %}
+                        —
+                        {% endif %}
+                    </td>
+
+                    <td>{{ row.latest_date }}</td>
+
+                    <td>
+                        {% if row.latest_value is not None %}
+                        {{ row.latest_value }} {{ row.unit }}
+                        {% else %}
+                        —
+                        {% endif %}
+                    </td>
+
+                    <td class="{{ row.success_class }}">
+                        {% if row.difference is not None %}
+                        {% if row.difference > 0 %}
+                        +{{ row.difference }} {{ row.unit }}
+                        {% else %}
+                        {{ row.difference }} {{ row.unit }}
+                        {% endif %}
+                        {% else %}
+                        —
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+            <p>No body measurement data available yet.</p>
+            {% endif %}
+
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

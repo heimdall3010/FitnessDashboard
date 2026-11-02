@@ -1,0 +1,112 @@
+{% extends "tracker/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="data-page exercises-page">
+
+    <div class="box-100 box-shadow data-page-box">
+        <img class="data-page-box-icon" src="{% static 'tracker/svg/hand-grip-gym.svg' %}" alt="Fitness Dashboard | Hand Grip Icon"
+            aria-hidden="true">
+
+        <div class="data-page-header-box">
+            <h1 class="data-page-box-headline">Exercises</h1>
+            <span class="data-page-box-subheadline">Browse exercises by muscle groups</span>
+        </div>
+    </div>
+
+
+    <div class="component accordion-component">
+
+        {% if exercises_by_musclegroup %}
+
+            {% for exercise_musclegroup, exercises in exercises_by_musclegroup.items %}
+
+                <div class="accordion">
+
+                    <div class="
+                        accordion-headline
+                        {% if forloop.first %}accordion-active{% endif %}
+                    ">
+                        <h3>{{ exercise_musclegroup }}</h3>
+
+                        <div class="accordion-icon">
+                            <svg
+                                viewBox="0 0 32 32"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="m22.535 16.88-5.656 5.66a.962.962 0 0 1-.879.25.962.962 0 0 1-.879-.25l-5.656-5.66a1.006 1.006 0 0 1 0-1.42 1 1 0 0 1 1.414 0L15 19.59V9a1.001 1.001 0 0 1 2 0v10.59l4.121-4.13a1 1 0 0 1 1.414 0c.391.4.391 1.03 0 1.42ZM16 0C7.163 0 0 7.16 0 16s7.163 16 16 16 16-7.16 16-16S24.837 0 16 0Z"
+                                    fill="#000"
+                                    fill-rule="evenodd"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="
+                        accordion-content
+                        {% if forloop.first %}accordion-active{% endif %}
+                    ">
+                        <div class="box-container">
+
+                            <div class="box-100 box-shadow info-box">
+
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Exercise</th>
+                                            <th>Muscle Groups</th>
+                                            <th>Equipment</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {% for exercise in exercises %}
+                                            <tr>
+                                                <td>
+                                                    {{ exercise.exercise_name }}
+                                                </td>
+
+                                                <td>
+                                                    {{ exercise.exercise_musclegroup }}
+                                                </td>
+                                                <td>
+                                                    {{ exercise.exercise_equipment }}
+                                                </td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td colspan="2">
+                                                    No exercises available for this muscle group.
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="box-container">
+                <div class="box-100 info-box">
+                    <p>No exercises available yet.</p>
+                </div>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,267 @@
+{% extends "tracker/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="data-page meal-plan-page">
+
+
+    <div class="box-100 box-shadow data-page-box">
+        <img class="data-page-box-icon" src="{% static 'tracker/svg/salad.svg' %}"
+            alt="Fitness Dashboard | Measuring Tape Icon" aria-hidden="true">
+        <div class="data-page-header-box">
+            <h1 class="data-page-box-headline">Meal</h1>
+            <span class="data-page-box-subheadline">You are what you eat</span>
+        </div>
+    </div>
+
+
+
+    <div class="component accordion-component">
+
+        <div class="accordion">
+            <div class="accordion-headline accordion-active">
+                <h3>
+                    Breakfast
+                </h3>
+                <div class="accordion-icon">
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="m22.535 16.88-5.656 5.66a.962.962 0 0 1-.879.25.962.962 0 0 1-.879-.25l-5.656-5.66a1.006 1.006 0 0 1 0-1.42 1 1 0 0 1 1.414 0L15 19.59V9a1.001 1.001 0 0 1 2 0v10.59l4.121-4.13a1 1 0 0 1 1.414 0c.391.4.391 1.03 0 1.42ZM16 0C7.163 0 0 7.16 0 16s7.163 16 16 16 16-7.16 16-16S24.837 0 16 0Z"
+                            fill="#000" fill-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="accordion-content accordion-active">
+                <div class="box-container">
+
+                    {# Breakfast #}
+                    {% for meal in meals.breakfast %}
+
+
+                    <div class="box-50 box-shadow info-box">
+
+                        <div class="info-box-header">
+                            <div class="info-box-header-icon">
+                                <img class="info-box-icon" src="{% static 'tracker/svg/breakfast.svg' %}"
+                                    alt="Fitness Dashboard | Breakfast Icon" aria-hidden="true">
+                            </div>
+                            <div class="info-box-header-headlines">
+                                <h2 class="info-box-icon-headline">{{ meal.name }}</h2>
+                                <span class="info-box-icon-subheadline">{{ meal.category }}</span>
+                            </div>
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ingredient</th>
+                                    <th>Amount</th>
+                                    <th>Unit</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for ingredient in meal.ingredients %}
+                                <tr>
+                                    <td>{{ ingredient.name }}</td>
+                                    <td>{{ ingredient.amount }}</td>
+                                    <td>{{ ingredient.unit }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="accordion">
+            <div class="accordion-headline">
+                <h3>
+                    Lunch
+                </h3>
+                <div class="accordion-icon">
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="m22.535 16.88-5.656 5.66a.962.962 0 0 1-.879.25.962.962 0 0 1-.879-.25l-5.656-5.66a1.006 1.006 0 0 1 0-1.42 1 1 0 0 1 1.414 0L15 19.59V9a1.001 1.001 0 0 1 2 0v10.59l4.121-4.13a1 1 0 0 1 1.414 0c.391.4.391 1.03 0 1.42ZM16 0C7.163 0 0 7.16 0 16s7.163 16 16 16 16-7.16 16-16S24.837 0 16 0Z"
+                            fill="#000" fill-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="accordion-content">
+                <div class="box-container">
+
+                    {# Lunch #}
+                    {% for meal in meals.lunch %}
+                    <div class="box-50 info-box">
+
+                        <div class="info-box-header">
+                            <div class="info-box-header-icon">
+                                <img class="info-box-icon" src="{% static 'tracker/svg/lunch.svg' %}"
+                                    alt="Fitness Dashboard | Lunch Icon" aria-hidden="true">
+                            </div>
+                            <div class="info-box-header-headlines">
+                                <h2 class="info-box-icon-headline">{{ meal.name }}</h2>
+                                <span class="info-box-icon-subheadline">{{ meal.category }}</span>
+                            </div>
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ingredient</th>
+                                    <th>Amount</th>
+                                    <th>Unit</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for ingredient in meal.ingredients %}
+                                <tr>
+                                    <td>{{ ingredient.name }}</td>
+                                    <td>{{ ingredient.amount }}</td>
+                                    <td>{{ ingredient.unit }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="accordion">
+            <div class="accordion-headline">
+                <h3>
+                    Snacks
+                </h3>
+                <div class="accordion-icon">
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="m22.535 16.88-5.656 5.66a.962.962 0 0 1-.879.25.962.962 0 0 1-.879-.25l-5.656-5.66a1.006 1.006 0 0 1 0-1.42 1 1 0 0 1 1.414 0L15 19.59V9a1.001 1.001 0 0 1 2 0v10.59l4.121-4.13a1 1 0 0 1 1.414 0c.391.4.391 1.03 0 1.42ZM16 0C7.163 0 0 7.16 0 16s7.163 16 16 16 16-7.16 16-16S24.837 0 16 0Z"
+                            fill="#000" fill-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="accordion-content">
+                <div class="box-container">
+
+                    {# Snack #}
+                    {% for meal in meals.snack %}
+                    <div class="box-50 info-box">
+
+                        <div class="info-box-header">
+                            <div class="info-box-header-icon">
+                                <img class="info-box-icon" src="{% static 'tracker/svg/snack.svg' %}"
+                                    alt="Fitness Dashboard | Snack Icon" aria-hidden="true">
+                            </div>
+                            <div class="info-box-header-headlines">
+                                <h2 class="info-box-icon-headline">{{ meal.name }}</h2>
+                                <span class="info-box-icon-subheadline">{{ meal.category }}</span>
+                            </div>
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ingredient</th>
+                                    <th>Amount</th>
+                                    <th>Unit</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for ingredient in meal.ingredients %}
+                                <tr>
+                                    <td>{{ ingredient.name }}</td>
+                                    <td>{{ ingredient.amount }}</td>
+                                    <td>{{ ingredient.unit }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="accordion">
+            <div class="accordion-headline">
+                <h3>
+                    Dinner
+                </h3>
+                <div class="accordion-icon">
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="m22.535 16.88-5.656 5.66a.962.962 0 0 1-.879.25.962.962 0 0 1-.879-.25l-5.656-5.66a1.006 1.006 0 0 1 0-1.42 1 1 0 0 1 1.414 0L15 19.59V9a1.001 1.001 0 0 1 2 0v10.59l4.121-4.13a1 1 0 0 1 1.414 0c.391.4.391 1.03 0 1.42ZM16 0C7.163 0 0 7.16 0 16s7.163 16 16 16 16-7.16 16-16S24.837 0 16 0Z"
+                            fill="#000" fill-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="accordion-content">
+                <div class="box-container">
+
+                    {# Dinner #}
+                    {% for meal in meals.dinner %}
+                    <div class="box-50 info-box">
+
+                        <div class="info-box-header">
+                            <div class="info-box-header-icon">
+                                <img class="info-box-icon" src="{% static 'tracker/svg/dinner.svg' %}"
+                                    alt="Fitness Dashboard | Dinner Icon" aria-hidden="true">
+                            </div>
+                            <div class="info-box-header-headlines">
+                                <h2 class="info-box-icon-headline">{{ meal.name }}</h2>
+                                <span class="info-box-icon-subheadline">{{ meal.category }}</span>
+                            </div>
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ingredient</th>
+                                    <th>Amount</th>
+                                    <th>Unit</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for ingredient in meal.ingredients %}
+                                <tr>
+                                    <td>{{ ingredient.name }}</td>
+                                    <td>{{ ingredient.amount }}</td>
+                                    <td>{{ ingredient.unit }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

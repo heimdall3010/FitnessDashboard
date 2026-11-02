@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <link rel="icon" type="image/x-icon" href="{% static 'tracker/favicon/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'tracker/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'tracker/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'tracker/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'tracker/favicon/site.webmanifest' %}">
+
+    <title>Fitness Dashboard</title>
+    <link rel="stylesheet" href="{% static 'tracker/style/style.min.css' %}">
+    <script type="module" src="{% static 'tracker/scripts/scripts.min.js' %}"></script>
+</head>
+
+<body>
+    <div class="backdrop"></div>
+    <div class="app-layout">
+
+        <button id="hamburger" class="hamburger hamburger--collapse" type="button" aria-label="Open menu">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+
+        <nav id="nav-component" class="nav-component">
+
+            <div class="nav-icon">
+                <img src="{% static 'tracker/favicon/android-chrome-512x512.png' %}" />
+            </div>
+
+            <div class="nav-divider">
+                <div class="nav-divider-inner"></div>
+            </div>
+
+            <nav id="nav-navbar">
+                <ul>
+                    <li class="nav-navbar-item" id=""> <a href="{% url 'tracker:dashboard' %}">Dashboard</a></li>
+                    <li class="nav-navbar-item" id="body-measures"> <a href="{% url 'tracker:body_measures' %}">Body
+                            Measures</a></li>
+                    <li class="nav-navbar-item" id="training-plan"> <a href="{% url 'tracker:training_plan' %}">Training
+                            Plan</a></li>
+                    <li class="nav-navbar-item" id="training-history"> <a
+                            href="{% url 'tracker:training_history' %}">Training History</a></li>
+                    <li class="nav-navbar-item" id="exercises"> <a
+                            href="{% url 'tracker:exercises' %}">Exercises</a></li>
+                    <li class="nav-navbar-item" id="meal-plan"> <a href="{% url 'tracker:meal_plan' %}">Meal
+                            Plan</a></li>
+                    <li class="nav-navbar-item" id="export"> <a href="{% url 'tracker:export' %}">Export</a></li>
+                    <li class="nav-navbar-item" id="credits"> <a href="{% url 'tracker:credits' %}">Credits</a></li>
+                </ul>
+            </nav>
+        </nav>
+
+        <main class="main-content">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+    </div>
+
+</body>
+
+</html>

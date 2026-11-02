@@ -1,0 +1,180 @@
+@use 'vars' as *;
+
+.info-box {
+
+  .info-box-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
+    width: 100%;
+    gap: 1rem;
+    margin: 1rem 0 3rem 0;
+
+    .info-box-header-icon {
+      width: 3.5rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .info-box-header-icon-small {
+      width: 2.75rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+
+    .info-box-icon-headline {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      position: relative;
+
+    }
+
+    .info-box-icon-subheadline {
+      font-size: 1.6rem;
+      font-family: $font-headline;
+      margin: 0;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: 1px;
+      width: 50%;
+      left: 0;
+      bottom: -1.5rem;
+      border-bottom: 1px solid rgba($gray, .55);
+    }
+
+  }
+
+  .info-box-inner {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+    position: relative;
+  }
+
+
+  .info-compare-box {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    font-family: $font-bold;
+    top: -1rem;
+    right: 0;
+  }
+
+
+  .info-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .info-text-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    p {
+      font-family: $font-bold;
+      margin: 0;
+    }
+
+    small {
+      padding: .5rem;
+      font-size: 1.2rem;
+    }
+  }
+
+
+  .info-text-box+.value-success {
+    background-color: transparent;
+
+    p {
+      color: $success;
+
+    }
+  }
+
+  .info-text-box+.value-fail {
+    background-color: transparent;
+
+    p {
+      color: darkred;
+
+    }
+  }
+
+
+  .info-bar {
+    width: 100%;
+    height: 2.5rem;
+    background-color: $gray;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+
+    .info-bar-inner {
+      height: 2.5rem;
+      background-color: $prim;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 110;
+    }
+
+    p {
+      color: $light;
+      font-family: $font-bold;
+      padding: 0;
+      margin: 0;
+      z-index: 120;
+    }
+
+  }
+
+  .info-bar-box {
+    width: 100%;
+  }
+
+  .info-bar-text {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    p {
+      margin: 2rem 0 0 0;
+    }
+  }
+
+
+.info-box-plot {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+}
+
+}

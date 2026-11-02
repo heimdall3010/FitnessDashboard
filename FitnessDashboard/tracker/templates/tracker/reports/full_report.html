@@ -1,0 +1,33 @@
+{% extends "tracker/reports/base_report.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+    @page {
+        size: A4 landscape;
+        margin: 1cm;
+    }
+</style>
+
+
+<div class="report-wrapper-inner-isolate">
+    {% include "tracker/reports/sections/dashboard_section.html" %}
+</div>
+
+<div class="report-wrapper-inner-isolate">
+    {% include "tracker/reports/sections/body_measurements_section.html" %}
+</div>
+
+<div class="report-wrapper-inner-isolate">
+    {% include "tracker/reports/sections/training_plan_section.html" %}
+</div>
+
+<div class="report-wrapper-inner-isolate">
+    {% include "tracker/reports/sections/training_history_section.html" %}
+</div>
+
+<div class="report-wrapper-inner-isolate">
+    {% include "tracker/reports/sections/meal_plan_section.html" %}
+</div>
+
+{% endblock %}
