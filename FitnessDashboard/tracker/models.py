@@ -158,6 +158,7 @@ class ExerciseBase(models.Model):
     BW = "body weight"
     YM = "yoga matt"
     PL = "plate(s)"
+    MA = "machine"
 
     EQUIPMENT_CHOICES = [
         (DB, "dumbbell"),
@@ -169,6 +170,7 @@ class ExerciseBase(models.Model):
         (BW, "body weight"),
         (YM, "yoga matt"),
         (PL, "plate(s)"),
+        (MA, "machine"),
     ]
 
     name = models.CharField(max_length=200)
